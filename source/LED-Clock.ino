@@ -17,20 +17,8 @@ Timezone GMT(_GMT, _BST);
 TimeChangeRule _CET  = {"CET",  Last, Sun, Oct, 3, 60};        //Standard time = UTC + 1 hours
 TimeChangeRule _CEST = {"CEST", Last, Sun, Mar, 2, 120};       //Daylight time = UTC + 2 hours
 Timezone CET(_CET, _CEST);
-TimeChangeRule _EST = { "EST", First, Sun, Nov, 2, -300 };     //Standard time = UTC - 5 hours
-TimeChangeRule _EDT = { "EDT", Second, Sun, Mar, 2, -240 };    //Daylight time = UTC - 4 hours
-Timezone EDT(_EDT, _EST);
-TimeChangeRule _CST = { "CST", First, Sun, Nov, 2, -360 };     //Standard time = UTC - 6 hours
-TimeChangeRule _CDT = { "CDT", Second, Sun, Mar, 2, -300 };    //Daylight time = UTC - 5 hours
-Timezone CDT(_CDT, _CST);
-TimeChangeRule _MST = { "MST", First, Sun, Nov, 2, -420 };     //Standard time = UTC - 7 hours
-TimeChangeRule _MDT = { "MDT", Second, Sun, Mar, 2, -360 };    //Daylight time = UTC - 6 hours
-Timezone MDT(_MDT, _MST);
-TimeChangeRule _PST = { "PST", First, Sun, Nov, 2, -480 };     //Standard time = UTC - 8 hours
-TimeChangeRule _PDT = { "PDT", Second, Sun, Mar, 2, -420 };    //Daylight time = UTC - 7 hours
-Timezone PDT(_PDT, _PST);
 
-Timezone* timezones[] = { &GMT, &CET, &EDT, &CDT, &MDT, &PDT };
+Timezone* timezones[] = { &GMT, &CET};
 Timezone* TZ;                  //pointer to the time zone
 uint8_t tzIndex = 1;            //indexes the timezones[] array
 TimeChangeRule* tcr;          //pointer to the time change rule, use to get TZ abbrev
