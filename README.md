@@ -1,4 +1,4 @@
-Clock-LED-Max7219
+# Clock-LED-Max7219
 Work in progress, my first GIT hub project.
 
 LED clock using Arduino Nano, Maxim 7219 Led display controller and GPS module.
