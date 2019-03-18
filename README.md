@@ -4,6 +4,7 @@ Work in progress, my first GIT hub project.
 <!--![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png)-->
 
 <!--img src="https://github.com/favicon.ico" width="48"-->
+<img src="./images/running.jpg" width="640">
 
 
 LED clock using Arduino Nano, Maxim 7219 Led display controller and GPS module.
