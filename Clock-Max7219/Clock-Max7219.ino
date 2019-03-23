@@ -71,7 +71,7 @@ void setup() {
   matrix.write();
   matrixInit();
   dispTest();
-  Serial.begin(9600);
+  Serial.begin(115200);
   analogReference(DEFAULT);
   pinMode(A3, OUTPUT);   // button attached to A2 & A3.
   digitalWrite(A3, LOW); // this is 'GND'
