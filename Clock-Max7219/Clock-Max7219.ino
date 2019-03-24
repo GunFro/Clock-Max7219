@@ -168,8 +168,8 @@ void loop() {
           matrix.drawPixel(currSec + 2, 23, HIGH);
           matrix.setCursor(1, 21);
         }
-        //sprintf(sp, "%2d:%02d", hour(TZ->toLocal(t)), minute(TZ->toLocal(t)));
-        sprintf(sp, "%2d:%02d", second(TZ->toLocal(t)), second(TZ->toLocal(t)));
+        sprintf(sp, "%2d:%02d", hour(TZ->toLocal(t)), minute(TZ->toLocal(t)));
+        //sprintf(sp, "%2d:%02d", second(TZ->toLocal(t)), second(TZ->toLocal(t)));
         matrix.print(sp);
       }
       matrix.write();
