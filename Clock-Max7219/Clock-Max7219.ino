@@ -6,9 +6,10 @@
 #include <SPI.h>
 #include <OneButton.h>
 #include <EEPROM.h>
-#include "fontA11b7.h"
-#include "fontB11b7.h"
-#include "fontC11b7.h"
+#include "fontA.h"
+#include "fontB.h"
+#include "fontC.h"
+#include "fontD.h"
 
 //https://www.timeanddate.com/time/map/
 
@@ -22,7 +23,7 @@ TimeChangeRule _UTC0 = {"UTC0", Last, Sun, Mar, 1, 0};     // UTC
 Timezone UTC0(_UTC0);
 TimeChangeRule _UTC1 = {"UTC1", Last, Sun, Mar, 1, 60};    // UTC +1
 Timezone UTC1(_UTC1);
-TimeChangeRule _UTC2 = {"UTC2", Last, Sun, Mar, 1, 120};    // UTC +2
+TimeChangeRule _UTC2 = {"UTC2", Last, Sun, Mar, 1, 120};   // UTC +2
 Timezone UTC2(_UTC2);
 
 const char string_0[] PROGMEM = "GMT-BST";
@@ -31,10 +32,11 @@ const char string_2[] PROGMEM = "UTC+0";
 const char string_3[] PROGMEM = "UTC+1";
 const char string_4[] PROGMEM = "UTC+2";
 const char* const tz_string_name[] PROGMEM = {string_0, string_1, string_2, string_3, string_4};
-char buffer[12];
 
 Timezone* timezones[] = { &GMT, &CET, &UTC0, &UTC1, &UTC2};
 Timezone* TZ;                  //pointer to the time zone
+
+char buffer[12];
 
 OneButton button1(A2, true); // A2+A3
 OneButton button2(A4, true); // A4+A5
@@ -42,13 +44,13 @@ OneButton button2(A4, true); // A4+A5
 TinyGPSPlus gps;
 Max72xxPanel matrix = Max72xxPanel(10, 8, 3); // 8x3 CS, HOR, VERT
 
-const GFXfont *font[] = {&fontA11pt7b, &fontB11pt7b, &fontC11pt7b};
+const GFXfont *font[] = {&fontA11pt7b, &fontB11pt7b, &fontC11pt7b, &fontA11Boldpt7b};
 uint8_t showAll = false;
 uint8_t ShowTZ = false;
 
 // Saved in EEPROM
-uint8_t tzIndex;            //indexes the timezones[] array
-uint8_t fontSel;            //indexes the font[] array
+uint8_t tzIndex;            // indexes the timezones[] array
+uint8_t fontSel;            // indexes the font[] array
 uint8_t posSecOver = true;
 
 /**********************************************************************/
@@ -97,7 +99,7 @@ void setup() {
     EEPROM[0] = 0x55;
     EEPROM[1] = 0xAA;
     EEPROM[2] = 1;    // tzIndex
-    EEPROM[3] = 0;    // fontSel
+    EEPROM[3] = 3;    // fontSel
     EEPROM[4] = true; // posSecOver
   }
   tzIndex = EEPROM[2];
@@ -166,8 +168,8 @@ void loop() {
           matrix.drawPixel(currSec + 2, 23, HIGH);
           matrix.setCursor(1, 21);
         }
-        sprintf(sp, "%2d:%02d", hour(TZ->toLocal(t)), minute(TZ->toLocal(t)));
-        //sprintf(sp, "%2d:%02d", minute(TZ->toLocal(t)), second(TZ->toLocal(t)));
+        //sprintf(sp, "%2d:%02d", hour(TZ->toLocal(t)), minute(TZ->toLocal(t)));
+        sprintf(sp, "%2d:%02d", second(TZ->toLocal(t)), second(TZ->toLocal(t)));
         matrix.print(sp);
       }
       matrix.write();
@@ -180,9 +182,9 @@ void loop() {
 /**********************************************************************/
 void matrixInit() {
   // Init max7219 chips
-  matrix.spiTransfer(15, 0); //OP_DISPLAYTEST
-  matrix.spiTransfer(11, 7); //OP_SCANLIMIT
-  matrix.spiTransfer(9, 0);  //OP_DECODEMODE
+  matrix.spiTransfer(15, 0); // OP_DISPLAYTEST
+  matrix.spiTransfer(11, 7); // OP_SCANLIMIT
+  matrix.spiTransfer(9, 0);  // OP_DECODEMODE
   matrix.shutdown(false);
 }
 /**********************************************************************/

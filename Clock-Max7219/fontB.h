@@ -1,4 +1,4 @@
-const uint8_t fontA11pt7bBitmaps[] PROGMEM = {
+const uint8_t fontB11pt7bBitmaps[] PROGMEM = {
   0x00, 0x00, 0x00, 0x1F, 0xFD, 0xFF, 0xFC, 0x01, 0xE0, 0x0F, 0x00, 0x78, 
   0x03, 0xC0, 0x1E, 0x00, 0xF0, 0x07, 0x80, 0x3C, 0x01, 0xE0, 0x0F, 0x00, 
   0x78, 0x03, 0xC0, 0x1E, 0x00, 0xFF, 0xFE, 0xFF, 0xE0, 0x00, 0x00, 0x00, 
@@ -32,7 +32,7 @@ const uint8_t fontA11pt7bBitmaps[] PROGMEM = {
   0x00, 0x0F, 0x00, 0x0F, 0x00, 0x00
 };
 
-const GFXglyph fontA11pt7bGlyphs[] PROGMEM = {
+const GFXglyph fontB11pt7bGlyphs[] PROGMEM = {
   {     0,   0,   0,  15,    0,    1 }   // ' '
  ,{     0,   0,   0,   1,    0,    1 }   // '!'
  ,{     0,   0,   0,   1,    0,    1 }   // '"'
@@ -62,8 +62,8 @@ const GFXglyph fontA11pt7bGlyphs[] PROGMEM = {
  ,{   360,   2,  22,   4,    0,  -21 }   // ':'
 };
 
-const GFXfont fontA11pt7b PROGMEM = {
-  (uint8_t  *)fontA11pt7bBitmaps,
-  (GFXglyph *)fontA11pt7bGlyphs,
+const GFXfont fontB11pt7b PROGMEM = {
+  (uint8_t  *)fontB11pt7bBitmaps,
+  (GFXglyph *)fontB11pt7bGlyphs,
   0x20, 0x3A, 22
 };
